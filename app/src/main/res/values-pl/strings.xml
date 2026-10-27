@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="service_label">Zrzuty TriShot</string>
+    <string name="service_description">Pozwala TriShot zrobić zrzut ekranu, gdy przesuniesz trzema palcami w dół lub dotkniesz kafelka TriShot w Szybkich ustawieniach. TriShot nie odczytuje ani nie zbiera zawartości ekranu; zrzuty zostają na Twoim urządzeniu.</string>
+    <string name="tile_label">Zrzut ekranu</string>
+    <string name="tile_set_up">Dotknij, aby skonfigurować</string>
+
+    <!-- Toasts -->
+    <string name="toast_read_failed">Nie udało się odczytać zrzutu ekranu</string>
+    <string name="toast_save_failed">Nie udało się zapisać zrzutu ekranu</string>
+    <string name="toast_saved">Zapisano zrzut ekranu · %1$s</string>
+    <string name="toast_too_fast">Za szybko, spróbuj ponownie</string>
+    <string name="toast_protected">Ten ekran jest chroniony</string>
+    <string name="toast_failed">Nie udało się zrobić zrzutu ekranu (%1$d)</string>
+    <string name="toast_no_app_info">Informacje o aplikacji są niedostępne</string>
+    <string name="toast_start_shizuku">Najpierw uruchom Shizuku, a potem włącz to ponownie</string>
+    <string name="toast_install_shizuku">Najpierw zainstaluj Shizuku, a potem je uruchom</string>
+
+    <!-- Actions -->
+    <string name="action_share">Udostępnij</string>
+    <string name="action_delete">Usuń</string>
+    <string name="action_capture">Zrób zrzut</string>
+    <string name="action_allow">Zezwól</string>
+    <string name="action_turn_on">Włącz</string>
+    <string name="action_open_settings">Otwórz ustawienia</string>
+    <string name="action_app_info">Informacje o aplikacji</string>
+    <string name="action_close">Zamknij</string>
+    <string name="cd_clear_selection">Wyczyść zaznaczenie</string>
+    <string name="cd_back">Wstecz</string>
+    <string name="cd_screenshot">Zrzut ekranu</string>
+    <string name="cd_selected">Zaznaczony</string>
+
+    <!-- Home -->
+    <plurals name="selected_count">
+        <item quantity="one">%d zaznaczony</item>
+        <item quantity="few">%d zaznaczone</item>
+        <item quantity="many">%d zaznaczonych</item>
+        <item quantity="other">%d zaznaczonego</item>
+    </plurals>
+    <string name="section_screenshots">Zrzuty ekranu</string>
+    <string name="stat_saved">Zapisane</string>
+    <string name="stat_total_size">Łączny rozmiar</string>
+    <string name="stat_taken">Zrobione łącznie</string>
+    <string name="media_title">Zezwól na dostęp do zdjęć</string>
+    <string name="media_body">Android sam zapisuje zrzuty ekranu. TriShot potrzebuje dostępu do zdjęć, aby je tu pokazać i zsumować ich rozmiar. Wybierz „Zezwól na wszystkie”.</string>
+    <string name="ready_title">Gotowe do zrzutów</string>
+    <string name="ready_shizuku">Przesuń trzema palcami w dół w dowolnej aplikacji.</string>
+    <string name="ready_in_app">Przesuń tu trzema palcami w dół albo dotknij kafelka Zrzut ekranu w Szybkich ustawieniach.</string>
+    <string name="shizuku_title">Przesuwanie trzema palcami przez Shizuku</string>
+    <string name="shizuku_subtitle">Działa w każdej aplikacji, w tle. Wymaga uruchomionego Shizuku.</string>
+    <string name="capture_off_title">Zrzuty są wyłączone</string>
+    <string name="capture_off_body">Włącz usługę Zrzuty TriShot, aby robić zrzuty ekranu.</string>
+    <string name="empty_title">Brak zrzutów ekranu</string>
+    <string name="empty_body">Przesuń trzema palcami w dół, aby zrobić pierwszy.</string>
+
+    <!-- Dialogs -->
+    <string name="setup_title">Włącz robienie zrzutów</string>
+    <string name="setup_body">TriShot używa usługi ułatwień dostępu tylko do robienia zrzutów ekranu, gdy o to poprosisz. Nie odczytuje zawartości ekranu.\n\nW Ustawieniach otwórz „Zrzuty TriShot” i włącz usługę.\n\nJeśli przełącznik jest wyszarzony („Ustawienie z ograniczeniami”), otwórz Informacje o aplikacji, dotknij ⋮ i wybierz „Zezwól na ustawienia z ograniczeniami”.</string>
+
+    <!-- Viewer -->
+    <string name="viewer_position">%1$d z %2$d</string>
+    <string name="details_title">Szczegóły</string>
+    <string name="detail_name">Nazwa</string>
+    <string name="detail_taken">Data</string>
+    <string name="detail_size">Rozmiar</string>
+    <string name="detail_resolution">Rozdzielczość</string>
+</resources>

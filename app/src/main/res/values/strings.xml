@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">TriShot</string>
+    <string name="service_label">TriShot capture</string>
+    <string name="service_description">Lets TriShot take a screenshot when you swipe down with three fingers or tap the TriShot Quick Settings tile. TriShot does not read or collect any screen content; screenshots stay on your device.</string>
+    <string name="tile_label">Screenshot</string>
+    <string name="tile_set_up">Tap to set up</string>
+
+    <!-- Toasts -->
+    <string name="toast_read_failed">Couldn\'t read the screenshot</string>
+    <string name="toast_save_failed">Couldn\'t save the screenshot</string>
+    <string name="toast_saved">Screenshot saved · %1$s</string>
+    <string name="toast_too_fast">Too fast, try again</string>
+    <string name="toast_protected">This screen is protected</string>
+    <string name="toast_failed">Screenshot failed (%1$d)</string>
+    <string name="toast_no_app_info">App info isn\'t available</string>
+    <string name="toast_start_shizuku">Start Shizuku first, then turn this on again</string>
+    <string name="toast_install_shizuku">Install Shizuku first, then start it</string>
+
+    <!-- Actions -->
+    <string name="action_share">Share</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_capture">Capture</string>
+    <string name="action_allow">Allow</string>
+    <string name="action_turn_on">Turn on</string>
+    <string name="action_open_settings">Open settings</string>
+    <string name="action_app_info">App info</string>
+    <string name="action_close">Close</string>
+    <string name="cd_clear_selection">Clear selection</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_screenshot">Screenshot</string>
+    <string name="cd_selected">Selected</string>
+
+    <!-- Home -->
+    <plurals name="selected_count">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
+    <string name="section_screenshots">Screenshots</string>
+    <string name="stat_saved">Saved</string>
+    <string name="stat_total_size">Total size</string>
+    <string name="stat_taken">Taken ever</string>
+    <string name="media_title">Allow photo access</string>
+    <string name="media_body">Android saves the screenshots itself. TriShot needs access to your photos to show them here and add up their size. Choose \"Allow all\".</string>
+    <string name="ready_title">Ready to capture</string>
+    <string name="ready_shizuku">Swipe down with three fingers in any app.</string>
+    <string name="ready_in_app">Swipe down with three fingers here, or tap the Screenshot tile in Quick Settings.</string>
+    <string name="shizuku_title">Three-finger swipe with Shizuku</string>
+    <string name="shizuku_subtitle">Works in every app, in the background. Needs Shizuku running.</string>
+    <string name="capture_off_title">Capture is off</string>
+    <string name="capture_off_body">Turn on the TriShot capture service to take screenshots.</string>
+    <string name="empty_title">No screenshots yet</string>
+    <string name="empty_body">Swipe down with three fingers to take your first one.</string>
+
+    <!-- Dialogs -->
+    <string name="setup_title">Turn on screenshot capture</string>
+    <string name="setup_body">TriShot uses an accessibility service only to take screenshots when you ask it to. It doesn\'t read what\'s on your screen.\n\nIn Settings, open \"TriShot capture\" and switch it on.\n\nIf the switch is greyed out (\"Restricted setting\"), open App info, tap ⋮ and choose \"Allow restricted settings\" first.</string>
+
+    <!-- Viewer -->
+    <string name="viewer_position">%1$d of %2$d</string>
+    <string name="details_title">Details</string>
+    <string name="detail_name">Name</string>
+    <string name="detail_taken">Taken</string>
+    <string name="detail_size">Size</string>
+    <string name="detail_resolution">Resolution</string>
+</resources>
