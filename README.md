@@ -43,3 +43,5 @@ keyPassword=...
 Without that file, `assembleRelease` falls back to the debug key.
 
 On Windows, the AIDL compiler fails on very long paths; build from a short path (or a `subst` drive) if that happens.
+
+P.S: This app is a test of LLM capabilities, i'll update it on my own without it's help for further versions.
