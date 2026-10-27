@@ -1,6 +1,8 @@
 package pl.arixelo.trishot.ui
 
+import android.app.Activity
 import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.DisposableEffect
@@ -78,8 +80,16 @@ fun TriShotApp(
     var viewerIndex by rememberSaveable { mutableIntStateOf(-1) }
     val gridState = rememberLazyGridState()
 
-    val mediaPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+    val mediaPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         ShotRepository.refresh()
+        // After repeated denials Android stops showing the dialog; send the user to App info instead.
+        val activity = context as? Activity
+        if (!granted && activity != null &&
+            !ActivityCompat.shouldShowRequestPermissionRationale(activity, ShotRepository.mediaPermission)
+        ) {
+            Toast.makeText(context, R.string.toast_allow_photos_in_settings, Toast.LENGTH_LONG).show()
+            onOpenAppInfo()
+        }
     }
     // Android shows its own "Delete?" confirmation for files other apps (the system UI) created.
     val deleteRequest = rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {

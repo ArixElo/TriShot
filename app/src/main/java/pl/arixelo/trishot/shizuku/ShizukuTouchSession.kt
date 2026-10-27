@@ -7,10 +7,13 @@ import android.content.Intent
 import android.net.Uri
 import android.content.ServiceConnection
 import android.content.pm.PackageManager
+import android.hardware.display.DisplayManager
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.view.Display
+import android.view.Surface
 import rikka.shizuku.Shizuku
 
 object ShizukuAccess {
@@ -58,11 +61,29 @@ class ShizukuTouchSession(context: Context, private val onSwipe: () -> Unit) {
         // A new APK must replace the old watcher process, so tie the version to the install.
         .version((context.packageManager.getPackageInfo(context.packageName, 0).lastUpdateTime / 1000).toInt())
 
+    private val displays = context.getSystemService(DisplayManager::class.java)
+
     private val listener = object : ISwipeListener.Stub() {
-        override fun onSwipeDown() {
-            main.post(onSwipe)
+        override fun onSwipe(direction: Int) {
+            main.post {
+                val down = screenDownDirection()
+                Log.i(TAG, "three-finger swipe, raw direction $direction, down is $down")
+                if (direction == down) onSwipe()
+            }
         }
     }
+
+    /**
+     * Which raw panel direction points down on screen right now. Mirrors how Android's input
+     * reader rotates touch coordinates for each display rotation.
+     */
+    private fun screenDownDirection(): Int =
+        when (displays.getDisplay(Display.DEFAULT_DISPLAY)?.rotation ?: Surface.ROTATION_0) {
+            Surface.ROTATION_90 -> SwipeDetector.DIRECTION_MINUS_X
+            Surface.ROTATION_180 -> SwipeDetector.DIRECTION_MINUS_Y
+            Surface.ROTATION_270 -> SwipeDetector.DIRECTION_PLUS_X
+            else -> SwipeDetector.DIRECTION_PLUS_Y
+        }
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {

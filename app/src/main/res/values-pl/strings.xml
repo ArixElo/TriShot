@@ -14,6 +14,7 @@
     <string name="toast_failed">Nie udało się zrobić zrzutu ekranu (%1$d)</string>
     <string name="toast_no_app_info">Informacje o aplikacji są niedostępne</string>
     <string name="toast_start_shizuku">Najpierw uruchom Shizuku, a potem włącz to ponownie</string>
+    <string name="toast_allow_photos_in_settings">Otwórz Uprawnienia → Zdjęcia i filmy i wybierz „Zezwól na wszystkie”</string>
     <string name="toast_install_shizuku">Najpierw zainstaluj Shizuku, a potem je uruchom</string>
 
     <!-- Actions -->
