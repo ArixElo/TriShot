@@ -100,4 +100,6 @@
     <string name="menu_about">About the app</string>
     <string name="about_made_by">Made by</string>
     <string name="about_source">Source code on GitHub</string>
+    <string name="menu_language">Language</string>
+    <string name="language_system">System default</string>
 </resources>

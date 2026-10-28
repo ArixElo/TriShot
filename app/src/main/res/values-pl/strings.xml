@@ -103,4 +103,6 @@
     <string name="menu_about">O aplikacji</string>
     <string name="about_made_by">Autor</string>
     <string name="about_source">Kod źródłowy na GitHubie</string>
+    <string name="menu_language">Język</string>
+    <string name="language_system">Domyślny systemowy</string>
 </resources>

@@ -30,4 +30,7 @@ Download the latest `TriShot.apk` from [Releases](../../releases) and open it on
 # Screenshots of the app
 -soon.
 
+# License
+TriShot is licensed under [CC BY-NC 4.0](LICENSE): you may use, share and modify it as long as you credit the author, but not for commercial purposes.
+
 ***P.S: This app is a test of LLM capabilities, i'll update it on my own, after 2.0, probably.***

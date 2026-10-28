@@ -238,6 +238,7 @@ fun HomeScreen(
 private fun OverflowMenu(appVersion: String, onCheckUpdates: () -> Unit) {
     var open by remember { mutableStateOf(false) }
     var showAbout by remember { mutableStateOf(false) }
+    var showLanguage by remember { mutableStateOf(false) }
     Box {
         IconButton(onClick = { open = true }) {
             Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.cd_more))
@@ -251,6 +252,16 @@ private fun OverflowMenu(appVersion: String, onCheckUpdates: () -> Unit) {
                     onCheckUpdates()
                 },
             )
+            if (AppLanguage.isSupported) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.menu_language)) },
+                    leadingIcon = { Icon(painterResource(R.drawable.ic_language), contentDescription = null) },
+                    onClick = {
+                        open = false
+                        showLanguage = true
+                    },
+                )
+            }
             DropdownMenuItem(
                 text = { Text(stringResource(R.string.menu_about)) },
                 leadingIcon = { Icon(Icons.Filled.Info, contentDescription = null) },
@@ -262,6 +273,7 @@ private fun OverflowMenu(appVersion: String, onCheckUpdates: () -> Unit) {
         }
     }
     if (showAbout) AboutDialog(appVersion = appVersion, onDismiss = { showAbout = false })
+    if (showLanguage && AppLanguage.isSupported) LanguageDialog(onDismiss = { showLanguage = false })
 }
 
 @Composable
