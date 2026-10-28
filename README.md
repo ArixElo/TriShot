@@ -1,4 +1,9 @@
-# TriShot
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo/TriShot-logo-dark.png">
+    <img alt="TriShot" src="docs/logo/TriShot-logo.png" width="440">
+  </picture>
+</p>
 
 ## Make the screenshots, with an easier way!
 
