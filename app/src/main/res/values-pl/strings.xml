@@ -86,4 +86,16 @@
     <string name="action_retry">Spróbuj ponownie</string>
     <string name="show_more">Pokaż więcej</string>
     <string name="show_less">Pokaż mniej</string>
+    <!-- Milestones -->
+    <string name="channel_milestones">Kamienie milowe</string>
+    <plurals name="milestone_title">
+        <item quantity="one">%d zrzut!</item>
+        <item quantity="few">%d zrzuty!</item>
+        <item quantity="many">%d zrzutów!</item>
+        <item quantity="other">%d zrzutu!</item>
+    </plurals>
+    <string name="milestone_69">Hehe, segz</string>
+    <string name="milestone_420">Marycha, idziemy jarać?</string>
+    <string name="milestone_1337">Rucham ci matke</string>
+    <string name="milestone_2137">Jeszcze jak! Tak jak pan Jezus powiedział</string>
 </resources>

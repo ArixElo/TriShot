@@ -92,13 +92,27 @@ class CaptureService : AccessibilityService() {
             val since = System.currentTimeMillis()
             // Android's own screenshot: flash animation, preview with Share / Edit / Capture more.
             if (performGlobalAction(GLOBAL_ACTION_TAKE_SCREENSHOT)) {
-                ShotRepository.recordCapture()
+                val total = ShotRepository.recordCapture()
                 watchForScreenshot(since)
                 delay(SYSTEM_SHOT_COOLDOWN_MS)
                 busy = false
+                celebrateIfMilestone(total)
             } else {
                 captureSilently()
             }
+        }
+    }
+
+    /** At a milestone count: three more screenshots, then the milestone's notification. */
+    private fun celebrateIfMilestone(total: Int) {
+        val message = Milestones.messageFor(total) ?: return
+        scope.launch {
+            repeat(MILESTONE_BURST) {
+                delay(MILESTONE_GAP_MS)
+                capture()
+            }
+            delay(MILESTONE_GAP_MS)
+            Milestones.announce(this@CaptureService, total, message)
         }
     }
 
@@ -142,6 +156,7 @@ class CaptureService : AccessibilityService() {
                                 getString(R.string.toast_saved, Formatter.formatShortFileSize(this@CaptureService, shot.sizeBytes))
                             },
                         )
+                        if (shot != null) celebrateIfMilestone(ShotRepository.takenTotal.value)
                     }
                 }
 
@@ -164,6 +179,9 @@ class CaptureService : AccessibilityService() {
     companion object {
         private const val SYSTEM_SHOT_COOLDOWN_MS = 1_000L
         private const val WATCH_TIMEOUT_MS = 15_000L
+        private const val MILESTONE_BURST = 3
+        // Longer than SYSTEM_SHOT_COOLDOWN_MS so each burst shot gets through the busy guard.
+        private const val MILESTONE_GAP_MS = 1_600L
 
         @Volatile
         var instance: CaptureService? = null

@@ -85,4 +85,14 @@
     <string name="action_retry">Try again</string>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
+    <!-- Milestones -->
+    <string name="channel_milestones">Milestones</string>
+    <plurals name="milestone_title">
+        <item quantity="one">%d screenshot!</item>
+        <item quantity="other">%d screenshots!</item>
+    </plurals>
+    <string name="milestone_69">Very nice, a position number</string>
+    <string name="milestone_420">Smoke weed everyday</string>
+    <string name="milestone_1337">Get Rekt kid</string>
+    <string name="milestone_2137">And we after school went for kremówki</string>
 </resources>

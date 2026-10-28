@@ -1,9 +1,12 @@
 package pl.arixelo.trishot
 
+import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.HapticFeedbackConstants
@@ -12,18 +15,22 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.content.edit
 import pl.arixelo.trishot.capture.CaptureService
 import pl.arixelo.trishot.data.ShotRepository
-import pl.arixelo.trishot.update.AppUpdater
 import pl.arixelo.trishot.ui.TriShotApp
 import pl.arixelo.trishot.ui.theme.TriShotTheme
+import pl.arixelo.trishot.update.AppUpdater
 
 class MainActivity : ComponentActivity() {
 
     private var showSetup by mutableStateOf(false)
+
+    private val notificationPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
 
     private val threeFingerSwipe by lazy {
         ThreeFingerSwipeDetector(minDistancePx = 100 * resources.displayMetrics.density) {
@@ -39,6 +46,7 @@ class MainActivity : ComponentActivity() {
         ShotRepository.init(this)
         handleIntent(intent)
         AppUpdater.autoCheck()
+        askForNotificationsOnce()
 
         setContent {
             TriShotTheme {
@@ -67,6 +75,16 @@ class MainActivity : ComponentActivity() {
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         threeFingerSwipe.onTouchEvent(ev)
         return super.dispatchTouchEvent(ev)
+    }
+
+    /** Android 13+ needs permission for notifications; ask once and respect the answer. */
+    private fun askForNotificationsOnce() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+        if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) return
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        if (prefs.getBoolean(KEY_ASKED_NOTIFICATIONS, false)) return
+        prefs.edit { putBoolean(KEY_ASKED_NOTIFICATIONS, true) }
+        notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 
     private fun handleIntent(intent: Intent?) {
@@ -106,6 +124,7 @@ class MainActivity : ComponentActivity() {
 
     companion object {
         const val EXTRA_SETUP = "pl.arixelo.trishot.SETUP"
+        private const val KEY_ASKED_NOTIFICATIONS = "asked_notifications"
     }
 }
 

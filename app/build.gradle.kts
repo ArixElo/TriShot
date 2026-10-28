@@ -13,8 +13,8 @@ android {
         applicationId = "pl.arixelo.trishot"
         minSdk = 30 // AccessibilityService.takeScreenshot()
         targetSdk = 37
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 5
+        versionName = "1.3"
     }
 
     // Release key details live in keystore.properties (git-ignored); without it, release falls back to the debug key.

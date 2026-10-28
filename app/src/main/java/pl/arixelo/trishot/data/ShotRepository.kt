@@ -78,11 +78,13 @@ object ShotRepository {
         io.launch { load() }
     }
 
+    /** Counts one more screenshot and returns the new total. */
     @Synchronized
-    fun recordCapture() {
+    fun recordCapture(): Int {
         val total = prefs.getInt(KEY_TAKEN, 0) + 1
         prefs.edit { putInt(KEY_TAKEN, total) }
         _takenTotal.value = total
+        return total
     }
 
     /** Looks for a screenshot saved at or after [sinceMillis] and starts tracking it. */
