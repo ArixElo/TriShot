@@ -40,6 +40,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import pl.arixelo.trishot.update.Release
+import pl.arixelo.trishot.update.UpdateState
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Warning
@@ -95,6 +102,11 @@ fun HomeScreen(
     onDelete: (List<Shot>) -> Unit,
     onCapture: () -> Unit,
     onSetup: () -> Unit,
+    updateState: UpdateState,
+    appVersion: String,
+    onCheckUpdates: () -> Unit,
+    onUpdate: (Release) -> Unit,
+    onDismissUpdate: () -> Unit,
 ) {
     val context = LocalContext.current
     var selectedIds by remember { mutableStateOf(emptySet<String>()) }
@@ -138,6 +150,8 @@ fun HomeScreen(
                         }) {
                             Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.action_delete))
                         }
+                    } else {
+                        OverflowMenu(appVersion = appVersion, onCheckUpdates = onCheckUpdates)
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -172,6 +186,14 @@ fun HomeScreen(
                     saved = shots.size,
                     totalBytes = shots.sumOf { it.sizeBytes },
                     takenTotal = takenTotal,
+                )
+            }
+            item(key = "update", span = { GridItemSpan(maxLineSpan) }) {
+                UpdateCard(
+                    state = updateState,
+                    currentVersion = appVersion,
+                    onUpdate = onUpdate,
+                    onDismiss = onDismissUpdate,
                 )
             }
             item(key = "status", span = { GridItemSpan(maxLineSpan) }) {
@@ -210,6 +232,32 @@ fun HomeScreen(
         }
     }
 
+}
+
+@Composable
+private fun OverflowMenu(appVersion: String, onCheckUpdates: () -> Unit) {
+    var open by remember { mutableStateOf(false) }
+    Box {
+        IconButton(onClick = { open = true }) {
+            Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.cd_more))
+        }
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.menu_check_updates)) },
+                leadingIcon = { Icon(Icons.Filled.Refresh, contentDescription = null) },
+                onClick = {
+                    open = false
+                    onCheckUpdates()
+                },
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.menu_version, appVersion)) },
+                leadingIcon = { Icon(Icons.Filled.Info, contentDescription = null) },
+                enabled = false,
+                onClick = {},
+            )
+        }
+    }
 }
 
 @Composable

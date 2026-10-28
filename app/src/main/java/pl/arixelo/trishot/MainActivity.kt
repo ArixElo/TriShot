@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import pl.arixelo.trishot.capture.CaptureService
 import pl.arixelo.trishot.data.ShotRepository
+import pl.arixelo.trishot.update.AppUpdater
 import pl.arixelo.trishot.ui.TriShotApp
 import pl.arixelo.trishot.ui.theme.TriShotTheme
 
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         ShotRepository.init(this)
         handleIntent(intent)
+        AppUpdater.autoCheck()
 
         setContent {
             TriShotTheme {

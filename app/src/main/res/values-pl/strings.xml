@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="service_label">Zrzuty TriShot</string>
     <string name="service_description">Pozwala TriShot zrobić zrzut ekranu, gdy przesuniesz trzema palcami w dół lub dotkniesz kafelka TriShot w Szybkich ustawieniach. TriShot nie odczytuje ani nie zbiera zawartości ekranu; zrzuty zostają na Twoim urządzeniu.</string>
@@ -65,4 +65,25 @@
     <string name="detail_taken">Data</string>
     <string name="detail_size">Rozmiar</string>
     <string name="detail_resolution">Rozdzielczość</string>
+    <!-- Updates -->
+    <string name="menu_check_updates">Sprawdź aktualizacje</string>
+    <string name="menu_version">Wersja %1$s</string>
+    <string name="cd_more">Więcej opcji</string>
+    <string name="update_checking">Sprawdzanie aktualizacji…</string>
+    <string name="update_up_to_date">Masz najnowszą wersję (%1$s)</string>
+    <string name="update_available_title">Dostępny jest TriShot %1$s</string>
+    <string name="update_current">Masz wersję %1$s</string>
+    <string name="update_downloading">Pobieranie… %1$d%%</string>
+    <string name="update_installing">Instalowanie…</string>
+    <string name="update_allow_install">Zezwól TriShot na instalowanie aplikacji, a potem dotknij Aktualizuj ponownie</string>
+    <string name="update_failed_network">Nie udało się połączyć z GitHubem. Sprawdź połączenie.</string>
+    <string name="update_failed_no_apk">To wydanie nie zawiera pliku APK.</string>
+    <string name="update_failed_signature">Ta aktualizacja nie jest podpisana kluczem TriShot, więc jej nie zainstalowano.</string>
+    <string name="update_failed_not_newer">Pobrana wersja nie jest nowsza od obecnej.</string>
+    <string name="update_failed_install">Aktualizacja nie została zainstalowana.</string>
+    <string name="action_update">Aktualizuj</string>
+    <string name="action_later">Później</string>
+    <string name="action_retry">Spróbuj ponownie</string>
+    <string name="show_more">Pokaż więcej</string>
+    <string name="show_less">Pokaż mniej</string>
 </resources>

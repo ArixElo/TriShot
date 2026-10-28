@@ -1,6 +1,13 @@
 package pl.arixelo.trishot.ui
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import androidx.compose.runtime.LaunchedEffect
+import pl.arixelo.trishot.update.AppUpdater
+import pl.arixelo.trishot.update.Release
+import pl.arixelo.trishot.update.UpdateState
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import android.widget.Toast
@@ -77,6 +84,39 @@ fun TriShotApp(
         }
     }
     val canReadMedia by ShotRepository.canReadMedia.collectAsStateWithLifecycle()
+    val updateState by AppUpdater.state.collectAsStateWithLifecycle()
+
+    // Results of a manual check that don't need a card get a short message instead.
+    LaunchedEffect(updateState) {
+        when (val state = updateState) {
+            UpdateState.Checking ->
+                Toast.makeText(context, R.string.update_checking, Toast.LENGTH_SHORT).show()
+            UpdateState.UpToDate -> {
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.update_up_to_date, AppUpdater.currentVersion),
+                    Toast.LENGTH_SHORT,
+                ).show()
+                AppUpdater.dismiss()
+            }
+            is UpdateState.Failed -> if (state.release == null) {
+                Toast.makeText(context, failureText(state.reason), Toast.LENGTH_LONG).show()
+                AppUpdater.dismiss()
+            }
+            else -> Unit
+        }
+    }
+    val startUpdate: (Release) -> Unit = { release ->
+        if (AppUpdater.canInstall()) {
+            AppUpdater.downloadAndInstall(release)
+        } else {
+            // One-time "Install unknown apps" switch for TriShot.
+            Toast.makeText(context, R.string.update_allow_install, Toast.LENGTH_LONG).show()
+            context.startActivity(
+                Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:${context.packageName}")),
+            )
+        }
+    }
     var viewerIndex by rememberSaveable { mutableIntStateOf(-1) }
     val gridState = rememberLazyGridState()
 
@@ -128,6 +168,11 @@ fun TriShotApp(
                 onDelete = delete,
                 onCapture = onCaptureOutside,
                 onSetup = { onShowSetup(true) },
+                updateState = updateState,
+                appVersion = AppUpdater.currentVersion,
+                onCheckUpdates = { AppUpdater.check() },
+                onUpdate = startUpdate,
+                onDismissUpdate = { AppUpdater.dismiss() },
             )
         }
     }
