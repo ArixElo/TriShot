@@ -32,8 +32,12 @@ Download the latest `TriShot.apk` from [Releases](../../releases) and open it on
 - Screenshots are being saved to the default location for them: `Pictures/Screenshots`, where the app tracks the ones which were captured by it.
 
 
-# Screenshots of the app
--soon.
+# Screenshots of the app:
+![first screenshot](docs/imgs/img1.png)
+![second screenshot](docs/imgs/img2.png)
+![third screenshot](docs/imgs/img3.png)
+![fourth screenshot](docs/imgs/img4.png)
+![fifth screenshot](docs/imgs/img5.png)
 
 # License
 Copyright (c) 2026 Patryk "ArixElo" Zimnicki. TriShot is licensed under [CC BY-NC 4.0](LICENSE): you may use, share and modify it as long as you credit the author, but not for commercial purposes.
