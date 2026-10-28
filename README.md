@@ -9,8 +9,8 @@
 
 # Features:
 - **Three-finger swipe gesture screenshots, with [Shizuku](https://shizuku.rikka.app/) required to work**,
-- **Screenshot counter, so you know how many you took, and how much all they weigh together**,
-- **Screenshot Manager, which lets you either share them with anyone, or either you can remove them (P.S: After certain numbers a suprise will appear, so keep screenshoting to see it)**,
+- **Screenshot counter, so you know how many you took, and how much all they weigh together (P.S: After certain numbers a suprise will appear, so keep screenshoting to see it)**,
+- **Screenshot Manager, which lets you either share them with anyone, or either you can remove them**,
 - **Updates over-the-air, so you can be up to date with the latest changes,**
 - **No ads, i'm not gonna make any revenue on that app, because I "wrote" this app only because of a missing feature on my main phone**,
 - **Quick Settings tile, if you decide that you don't want to use Shizuku for some reason, you can resort to click the QS tile which also will make a screenshot.**
