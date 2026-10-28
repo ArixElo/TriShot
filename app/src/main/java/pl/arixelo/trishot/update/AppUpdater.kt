@@ -50,6 +50,7 @@ sealed interface UpdateState {
 object AppUpdater {
     private const val LATEST_RELEASE = "https://api.github.com/repos/ArixElo/TriShot/releases/latest"
     private const val KEY_LAST_CHECK = "last_update_check"
+    private const val KEY_LAST_NOTIFIED = "last_notified_version"
     private const val AUTO_CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000L
 
     private lateinit var appContext: Context
@@ -57,6 +58,10 @@ object AppUpdater {
     private var job: Job? = null
 
     private val prefs by lazy { appContext.getSharedPreferences("updates", Context.MODE_PRIVATE) }
+
+    /** TriShot's screen is open, so the update card is enough and no notification is needed. */
+    @Volatile
+    private var appVisible = false
 
     private val _state = MutableStateFlow<UpdateState>(UpdateState.Idle)
     val state: StateFlow<UpdateState> = _state.asStateFlow()
@@ -70,7 +75,12 @@ object AppUpdater {
         appContext = context.applicationContext
     }
 
-    /** Checks quietly on app start, at most every few hours. */
+    fun onAppVisible(visible: Boolean) {
+        appVisible = visible
+        if (visible) UpdateNotifier.cancel(appContext)
+    }
+
+    /** Checks quietly (app start or in the background), at most every few hours. */
     fun autoCheck() {
         if (System.currentTimeMillis() - prefs.getLong(KEY_LAST_CHECK, 0) < AUTO_CHECK_INTERVAL_MS) return
         check(quiet = true)
@@ -88,10 +98,20 @@ object AppUpdater {
             prefs.edit { putLong(KEY_LAST_CHECK, System.currentTimeMillis()) }
             _state.value = when {
                 release == null -> if (quiet) UpdateState.Idle else UpdateState.Failed(UpdateState.Reason.NoApk)
-                isNewer(release.version, currentVersion) -> UpdateState.Available(release)
+                isNewer(release.version, currentVersion) -> {
+                    if (quiet) notifyOnce(release)
+                    UpdateState.Available(release)
+                }
                 else -> if (quiet) UpdateState.Idle else UpdateState.UpToDate
             }
         }
+    }
+
+    /** Announces each new version once, and only while TriShot isn't on screen. */
+    private fun notifyOnce(release: Release) {
+        if (appVisible || prefs.getString(KEY_LAST_NOTIFIED, null) == release.version) return
+        prefs.edit { putString(KEY_LAST_NOTIFIED, release.version) }
+        UpdateNotifier.show(appContext, release)
     }
 
     fun dismiss() {

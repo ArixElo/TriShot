@@ -15,6 +15,7 @@ import android.widget.Toast
 import pl.arixelo.trishot.R
 import pl.arixelo.trishot.data.ShotRepository
 import pl.arixelo.trishot.shizuku.ShizukuTouchSession
+import pl.arixelo.trishot.update.AppUpdater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -41,6 +42,13 @@ class CaptureService : AccessibilityService() {
         instance = this
         _running.value = true
         scope.launch { GestureMode.shizuku.collect(::applyShizukuMode) }
+        // This service runs all the time, so it also looks for updates in the background.
+        scope.launch {
+            while (true) {
+                AppUpdater.autoCheck()
+                delay(BACKGROUND_UPDATE_CHECK_MS)
+            }
+        }
     }
 
     private var shizukuSession: ShizukuTouchSession? = null
@@ -179,6 +187,7 @@ class CaptureService : AccessibilityService() {
     companion object {
         private const val SYSTEM_SHOT_COOLDOWN_MS = 1_000L
         private const val WATCH_TIMEOUT_MS = 15_000L
+        private const val BACKGROUND_UPDATE_CHECK_MS = 60 * 60 * 1000L
         private const val MILESTONE_BURST = 3
         // Longer than SYSTEM_SHOT_COOLDOWN_MS so each burst shot gets through the busy guard.
         private const val MILESTONE_GAP_MS = 1_600L

@@ -68,8 +68,14 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+        AppUpdater.onAppVisible(true)
         ShotRepository.refresh()
         if (CaptureService.instance != null) showSetup = false
+    }
+
+    override fun onPause() {
+        AppUpdater.onAppVisible(false)
+        super.onPause()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {

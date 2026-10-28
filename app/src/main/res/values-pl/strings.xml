@@ -98,4 +98,6 @@
     <string name="milestone_420">Marycha, idziemy jarać?</string>
     <string name="milestone_1337">Rucham ci matke</string>
     <string name="milestone_2137">Jeszcze jak! Tak jak pan Jezus powiedział</string>
+    <string name="channel_updates">Aktualizacje</string>
+    <string name="update_notification_text">Dotknij, aby zobaczyć nowości i zaktualizować</string>
 </resources>

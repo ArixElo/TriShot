@@ -95,4 +95,6 @@
     <string name="milestone_420">Smoke weed everyday</string>
     <string name="milestone_1337">Get Rekt kid</string>
     <string name="milestone_2137">And we after school went for kremówki</string>
+    <string name="channel_updates">Updates</string>
+    <string name="update_notification_text">Tap to see what\'s new and update</string>
 </resources>
