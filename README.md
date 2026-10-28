@@ -1,46 +1,33 @@
 # TriShot
 
-Make a screenshots in a easier way, with a three finger swipe.
+## Make the screenshots, with an easier way!
 
-Requires **Android 11+**. The swipe gesture needs **[Shizuku](https://shizuku.rikka.app/)**.
+# Features:
+- **Three-finger swipe gesture screenshots, with [Shizuku](https://shizuku.rikka.app/) required to work**,
+- **Screenshot counter, so you know how many you took, and how much all they weigh together**,
+- **Screenshot Manager, which lets you either share them with anyone, or either you can remove them (P.S: After certain numbers a suprise will appear, so keep screenshoting to see it)**,
+- **Updates over-the-air, so you can be up to date with the latest changes,**
+- **No ads, i'm not gonna make any revenue on that app, because I "wrote" this app only because of a missing feature on my main phone**,
+- **Quick Settings tile, if you decide that you don't want to use Shizuku for some reason, you can resort to click the QS tile which also will make a screenshot.**
 
-## Features
-- **Three-finger swipe** down in any app (with Shizuku) or inside TriShot.
-- **Android's own screenshot**: the same flash and Share / Edit / Capture more preview as power + volume down.
-- **Quick Settings tile** and a **Capture** button that hides the app first.
-- **Gallery** of the screenshots TriShot took: full-screen viewer, details, share, multi-select, delete.
-- **Stats**: how many are saved, their total size, and how many were taken in total.
+# How to install it: 
+Download the latest `TriShot.apk` from [Releases](../../releases) and open it on your phone, however _**if Google says no**_, then you need going to **Developer Options** > **Allow installing apps from not verified developers** > **Turn it on, reboot device** > **Wait the exact 24h (retarded, I know)** > **Then install the app.**
 
-## Install
-Download `TriShot-<version>.apk` from [Releases](../../releases) and open it on your phone, however if Google says no, then you need going to Developer Options > Allow installing apps from not verified developers > Turn it on, reboot device > Wait 24h (retarded, I know) > Then install the app.
-
-## Setup
+# Usage: 
 1. Open TriShot and tap **Turn on**, then switch on **TriShot capture** in Accessibility settings.
    If the switch is greyed out ("Restricted setting"), open App info → ⋮ → **Allow restricted settings** first.
 2. Tap **Allow** on the photo card and choose **Allow all**, so TriShot can show and measure the screenshots Android saves.
 3. Turn on **Three-finger swipe with Shizuku**. If Shizuku isn't installed, after turning on the switch TriShot opens its Google Play page; start Shizuku, then flip the switch again and allow TriShot.
 4. Optional: add the **Screenshot** tile to Quick Settings.
 
-## How it works
-- **Capture**: an accessibility service asks the system for a normal screenshot (`GLOBAL_ACTION_TAKE_SCREENSHOT`). It doesn't read screen content.
-- **Three-finger detection**: a Shizuku user service ([`TouchWatcher.kt`](app/src/main/java/pl/arixelo/trishot/shizuku/TouchWatcher.kt)) runs as the shell user and only *reads* raw touchscreen events from `/dev/input`. Touches still reach apps unchanged, so typing and taps behave normally, also no matter what orientation the device is currently in.
-- **Gallery**: screenshots stay in `Pictures/Screenshots`; TriShot remembers the MediaStore IDs of the ones it triggered.
 
-## Build
-```
-gradlew assembleDebug
-```
-Needs JDK 17+ (Android Studio's bundled JBR works) and Android SDK 37.
+# How does it work?:
+- The app asks for few permissions at the first start (`GLOBAL_ACTION_TAKE_SCREENSHOT`, `POST_NOTIFICATIONS`, `READ_MEDIA_IMAGES`, `READ_EXTERNAL_STORAGE`, `BIND_ACCESSIBILITY_SERVICE`, `BIND_QUICK_SETTINGS_TILE`, `INTERACT_ACROSS_USERS_FULL` and for updates: `INTERNET`, `REQUEST_INSTALL_PACKAGES`),
+- After you allow the app to use Shizuku by switching the mode to three-finger gesture, the `TouchWatcher` service works in the background to watch for the gesture (in detail: it catches the raw touch screen inputs from `/dev/input/touch`), which results in taking a screenshot, of course without interrupting anything you do or what orientation the device is currently in. **It doesn't read your screen content nor it sends screenshots anywhere, they are locally stored on your device, like a normal screenshot with a key-combo.**
+- Screenshots are being saved to the default location for them: `Pictures/Screenshots`, where the app tracks the ones which were captured by it.
 
-Release builds are signed with the key described in a `keystore.properties` file in the project root (not committed):
-```
-storeFile=/path/to/release.jks
-storePassword=...
-keyAlias=...
-keyPassword=...
-```
-Without that file, `assembleRelease` falls back to the debug key.
 
-On Windows, the AIDL compiler fails on very long paths; build from a short path (or a `subst` drive) if that happens.
+# Screenshots of the app
+-soon.
 
-P.S: This app is a test of LLM capabilities, i'll update it on my own without it's help for further versions.
+***P.S: This app is a test of LLM capabilities, i'll update it on my own, after 2.0, probably.***
