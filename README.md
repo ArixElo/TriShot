@@ -9,6 +9,7 @@
 
 # Features:
 - **Three-finger swipe gesture screenshots, with [Shizuku](https://shizuku.rikka.app/) required to work**,
+- **App is designed in Material Design 3, so it picks up the color of your wallpaper**,
 - **Screenshot counter, so you know how many you took, and how much all they weigh together (P.S: After certain numbers a suprise will appear, so keep screenshoting to see it)**,
 - **Screenshot Manager, which lets you either share them with anyone, or either you can remove them**,
 - **Updates over-the-air, so you can be up to date with the latest changes,**
