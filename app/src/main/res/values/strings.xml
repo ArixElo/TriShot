@@ -97,4 +97,7 @@
     <string name="milestone_2137">And we after school went for kremówki</string>
     <string name="channel_updates">Updates</string>
     <string name="update_notification_text">Tap to see what\'s new and update</string>
+    <string name="menu_about">About the app</string>
+    <string name="about_made_by">Made by</string>
+    <string name="about_source">Source code on GitHub</string>
 </resources>
