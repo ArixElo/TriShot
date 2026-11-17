@@ -17,7 +17,7 @@
 - **Quick Settings tile, if you decide that you don't want to use Shizuku for some reason, you can resort to click the QS tile which also will make a screenshot.**
 
 # How to install it: 
-Download the latest `TriShot.apk` from [Releases](../../releases) and open it on your phone, however _**if Google says no**_, then you need going to **Developer Options** > **Allow installing apps from not verified developers** > **Turn it on, reboot device** > **Wait the exact 24h (retarded, I know)** > **Then install the app.**
+Download the latest `TriShot.apk` from [Releases](../../releases) and open it on your phone, however _**if Google says no**_, then you need going to **Developer Options** > **Allow installing apps from not verified developers** > **Turn it on, reboot device** > **Wait the exact 24h (retarded, I know)** > **Then install the app. If Google still says no on older devices, then you may need to turn off Play Protect at the time of install.**
 
 # Usage: 
 1. Open TriShot and tap **Turn on**, then switch on **TriShot capture** in Accessibility settings.
