@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import pl.arixelo.trishot.R
+import pl.arixelo.trishot.ui.theme.amoledDialogModifier
 
 private const val AUTHOR_NAME = "Patryk „ArixElo” Zimnicki"
 private const val WEBSITE_URL = "https://arixelo.pl"
@@ -34,6 +35,7 @@ private const val SOURCE_URL = "https://github.com/ArixElo/TriShot"
 fun AboutDialog(appVersion: String, onDismiss: () -> Unit) {
     val uriHandler = LocalUriHandler.current
     AlertDialog(
+        modifier = amoledDialogModifier(),
         onDismissRequest = onDismiss,
         title = { TriShotLogo() },
         text = {

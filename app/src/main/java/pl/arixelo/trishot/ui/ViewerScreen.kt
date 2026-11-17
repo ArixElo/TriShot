@@ -36,13 +36,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
-import pl.arixelo.trishot.R
-import pl.arixelo.trishot.data.Shot
 import java.text.DateFormat
 import java.util.Date
+import pl.arixelo.trishot.R
+import pl.arixelo.trishot.data.Shot
+import pl.arixelo.trishot.ui.theme.amoledDialogModifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -127,6 +128,7 @@ fun ViewerScreen(
 
     if (showInfo) {
         AlertDialog(
+            modifier = amoledDialogModifier(),
             onDismissRequest = { showInfo = false },
             icon = { Icon(Icons.Filled.Info, contentDescription = null) },
             title = { Text(stringResource(R.string.details_title)) },

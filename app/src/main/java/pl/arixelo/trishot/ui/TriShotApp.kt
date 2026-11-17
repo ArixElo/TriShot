@@ -2,21 +2,11 @@ package pl.arixelo.trishot.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import androidx.compose.runtime.LaunchedEffect
-import pl.arixelo.trishot.update.AppUpdater
-import pl.arixelo.trishot.update.Release
-import pl.arixelo.trishot.update.UpdateState
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import pl.arixelo.trishot.shizuku.ShizukuAccess
-import rikka.shizuku.Shizuku
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,18 +21,29 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.arixelo.trishot.R
 import pl.arixelo.trishot.capture.CaptureService
 import pl.arixelo.trishot.capture.GestureMode
 import pl.arixelo.trishot.data.Shot
 import pl.arixelo.trishot.data.ShotRepository
+import pl.arixelo.trishot.shizuku.ShizukuAccess
+import pl.arixelo.trishot.ui.theme.amoledDialogModifier
+import pl.arixelo.trishot.update.AppUpdater
+import pl.arixelo.trishot.update.Release
+import pl.arixelo.trishot.update.UpdateState
+import rikka.shizuku.Shizuku
 
 private const val SHIZUKU_REQUEST = 7
 
@@ -179,6 +180,7 @@ fun TriShotApp(
 
     if (showSetup && !serviceOn) {
         AlertDialog(
+            modifier = amoledDialogModifier(),
             onDismissRequest = { onShowSetup(false) },
             icon = { Icon(painterResource(R.drawable.ic_capture), contentDescription = null) },
             title = { Text(stringResource(R.string.setup_title)) },

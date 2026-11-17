@@ -105,4 +105,5 @@
     <string name="about_source">Kod źródłowy na GitHubie</string>
     <string name="menu_language">Język</string>
     <string name="language_system">Domyślny systemowy</string>
+    <string name="menu_amoled">Tryb AMOLED</string>
 </resources>

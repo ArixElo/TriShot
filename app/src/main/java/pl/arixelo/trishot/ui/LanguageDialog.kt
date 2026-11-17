@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import pl.arixelo.trishot.R
+import pl.arixelo.trishot.ui.theme.amoledDialogModifier
 
 /**
  * Per-app language (Android 13+). An empty tag means "follow the system". The choice is the
@@ -67,6 +68,7 @@ fun LanguageDialog(onDismiss: () -> Unit) {
         AppLanguage.available.map { it to AppLanguage.nativeName(it) }
 
     AlertDialog(
+        modifier = amoledDialogModifier(),
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.menu_language)) },
         text = {

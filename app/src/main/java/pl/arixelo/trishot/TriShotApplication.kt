@@ -3,6 +3,7 @@ package pl.arixelo.trishot
 import android.app.Application
 import pl.arixelo.trishot.capture.GestureMode
 import pl.arixelo.trishot.data.ShotRepository
+import pl.arixelo.trishot.ui.theme.Appearance
 import pl.arixelo.trishot.update.AppUpdater
 
 class TriShotApplication : Application() {
@@ -11,5 +12,6 @@ class TriShotApplication : Application() {
         ShotRepository.init(this)
         GestureMode.init(this)
         AppUpdater.init(this)
+        Appearance.init(this)
     }
 }
